@@ -1,0 +1,34 @@
+geth +
+     --genesion 指定创世块的位置
+     --datadir 指定数据存储位置 （此位置要与公有链数据的存储位置区分开）
+     --nodiscover 标示此节点为私有，不被别人添加 （如果任何一个人有和你相同的genesion文件和ID号，那么，你的网络将会被添加）
+      --maxpeers 0 设置你的网络中可以被接入的最大节点数目，如果不想其他节点介入，可设置为 0
+      --rpc 允许节点的RPC接口打开 （默认情况下的geth 命令时打开的）
+      --rpcapi "db,eth,net,web3" 配置RPC接口允许访问的API （默认情况系，RPC接口是允许访问web3 的API的）
+             注：通过RPC/IPC 提供的API接口是可以让任何人进行访问的（例如DApp）,所以要多加注意自己所启用的接口。默认情况下，GETH 将启用所有的IPC支持的接口，而RPC的接口只有“db,eth,net,web3 ”
+      --rpcport "8080" 设置geth 端口号 （默认为8080）
+      --rpccorsdomain "http://chriseth.github.io/browser-solidity/" 设置可以连接此节点的网址（并不是通配符）
+      --port "30303" 设置监听端口号 用于与其他节点进行连接
+      --identity "TestnetMainNode" 设置节点标示
+     
+     例如：
+     geth --identity "MyNodeName" --genesis ../CustomGenesis.json --rpc --rpcport "8089" --rpccorsdomain "*" --datadir "../data" --port "31303" --nodiscover --rpcapi "db,eth,net,web3" --networkid 1999 console
+
+      geth --datadir <账户数据存放地址> account new 用于创建一个新账户
+     geth account list 查询账户列表 （必须在keystore 目录下才能执行）
+ 同样的，上述两种操作也可以在geth控制台中操作：（可以通过geth console 或 geth attach 两个命令进入控制台）（如果有多个私有链，则需要指定geth.ipc
+      geth attach ipc://home/deploy/yangshihong/ethdatadir/geth.ipc ）
+     eth.accounts 查询账户列表
+     personal.listAccounts 查询账户列表
+     personal.newAccount() 创建新账户
+     personal.deleteAccount(adrr,passwd) 删除账户
+     
+
+     geth  account import /path/to/<keyfile> 导入未加密的私钥
+          --datadir <地址> 指定秘钥所在的路径
+          --password <地址> 指定非交互使用的密码地址
+     
+     
+
+ https://github.com/ethereum/go-ethereum/wiki/Command-Line-Options  geth命令地址
+https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console#adminminerstart 脚本命令地址
